@@ -33,6 +33,12 @@ public class JdbcProductRepository implements ProductRepository {
 		return jdbcTemplate.query(sql, PRODUCT_ROW_MAPPER, "%" + keyword + "%");
 	}
 
+	@Override
+	public Product findOne(int id) {
+		String sql = "select * from product where id = ?";
+		return jdbcTemplate.queryForObject(sql, PRODUCT_ROW_MAPPER, id);
+	}
+
 }
 
 

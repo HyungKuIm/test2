@@ -18,6 +18,8 @@
 				height="64"></td>
 			<td>[[${product.name}]]</td>
 			<td>[[${product.price}]]원</td>
+			<td><a th:href="@{'/cartAdd?id=' + ${product.id}}">
+				장바구니에 추가</a></td>
 		</tr>
 	</table>
 </body>
