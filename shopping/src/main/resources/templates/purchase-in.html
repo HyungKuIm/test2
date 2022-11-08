@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="cartView">
+		<p>현재 [[${#lists.size(cart)}]] 종류의 상품이 있습니다.</p>
+		<hr>
+		<table style="border-collapse: separate; border-spacing: 10px;">
+			<tr th:each="c : ${cart}">
+				<td>상품[[${c.product.id}]]</td>
+				<td>[[${c.product.name}]]</td>
+				<td><img th:src="@{'/image/' + ${c.product.id} + '.jpg'}" 
+					width="120"></td>
+				<td>[[${c.product.price}]]원</td>
+				<td>[[${c.count}]]대</td>
+			</tr>
+		</table>
+		<hr>
+		<form action="" method="post">
+			<p>이름: <input type="text" name="name"></p>
+			<p>주소: <input type="text" name="address"></p>
+			<p><input type="submit" value="구입하기"></p>
+		</form>
+		
+	</div>
+</body>
+</html>

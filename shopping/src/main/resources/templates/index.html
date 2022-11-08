@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>hp 중고 노트북 팝니다.</title>
+</head>
+<body>
+	<a th:href="@{/product}">상품</a>
+	<a th:href="@{/cartList}">장바구니</a>
+	<a th:href="@{/login}">로그인</a>
+	<a th:href="@{/logout}">로그아웃</a>
+	
+	<hr>
+	
+	<div th:include="__${contents}__">
+		<p>여기는 메인 컨텐츠가 들어갈 곳입니다.</p>
+	</div>
+</body>
+</html>

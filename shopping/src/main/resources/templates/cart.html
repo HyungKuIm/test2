@@ -5,9 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-[[${id}]]번 제품을 추가했습니다. 감사합니다....<br>
-제품명: [[${name}]] <br>
-가격: [[${price}]] <br>
-이미지: <img th:src="@{'/image/' + ${id} + '.jpg'}" width="200">
+<div th:fragment="cartView">
+	[[${id}]]번 제품을 추가했습니다. 감사합니다....<br>
+	제품명: [[${name}]] <br>
+	가격: [[${price}]] <br>
+	이미지: <img th:src="@{'/image/' + ${id} + '.jpg'}" width="200">
+</div>
 </body>
 </html>

@@ -28,7 +28,8 @@ public class ProductController {
 		if (keyword == null) keyword = "";  // 키워드가 없으면 전체 검색
 		List<Product> list = productRepository.search(keyword);
 		model.addAttribute("list", list);
-		return "product";
+		model.addAttribute("contents", "product :: productView");
+		return "index";
 	}
 
 	
