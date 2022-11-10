@@ -5,6 +5,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div th:fragment="error-cart">
+		카트에 상품이 없습니다.
+	</div>
+
 	<div th:fragment="cartView">
 		<p>현재 [[${#lists.size(cart)}]] 종류의 상품이 있습니다.</p>
 		<hr>
@@ -19,7 +23,7 @@
 			</tr>
 		</table>
 		<hr>
-		<form action="" method="post">
+		<form th:action="@{/purchase}" method="post">
 			<p>이름: <input type="text" name="name"></p>
 			<p>주소: <input type="text" name="address"></p>
 			<p><input type="submit" value="구입하기"></p>
