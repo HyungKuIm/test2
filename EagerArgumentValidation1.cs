@@ -5,7 +5,7 @@ namespace demo4
 {
     class EagerArgumentValication1
     {
-        static void Main()
+        static void main()
         {
             MainAsync().GetAwaiter().GetResult();
         }
