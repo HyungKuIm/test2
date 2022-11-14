@@ -30,6 +30,11 @@ public class CartAddController {
 	public String addCart(@RequestParam("id") Integer id, Model model,
 			HttpSession session) {
 		System.out.println("cartAdd");
+		
+		if (session.getAttribute("customer") == null) {
+			return "redirect:/login";
+		}
+		
 		Product product = this.productRepository.findOne(id);
 		model.addAttribute("id", id);
 		model.addAttribute("name", product.getName());

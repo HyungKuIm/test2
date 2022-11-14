@@ -36,6 +36,14 @@ public class LoginController {
 		return "index";
 	}
 	
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		session.invalidate();
+		//session.removeAttribute("customer");
+		return "redirect:/login";
+	}
+	
 	//로그인 처리
 	@PostMapping("/login")
 	public String loginAction(@Validated LoginForm loginForm,
