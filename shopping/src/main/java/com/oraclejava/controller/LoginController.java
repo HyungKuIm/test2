@@ -1,5 +1,7 @@
 package com.oraclejava.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,10 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.oraclejava.domain.Customer;
 import com.oraclejava.form.LoginForm;
+import com.oraclejava.repository.CustomerRepository;
 
 @Controller
 public class LoginController {
+
+	private CustomerRepository customerRepository;
+	
+	public LoginController(CustomerRepository customerRepository) {
+		super();
+		this.customerRepository = customerRepository;
+	}
 
 	@ModelAttribute
 	public LoginForm setLoginForm() {
@@ -27,13 +38,24 @@ public class LoginController {
 	//로그인 처리
 	@PostMapping("/login")
 	public String loginAction(@Validated LoginForm loginForm,
-			BindingResult result, Model model) {
+			BindingResult result, Model model, HttpSession session) {
 		System.out.println("login");
 		if (result.hasErrors()) {
 			return loginForm();  //2
 		}
 		
-		return "login-out"; // 1.로그인에 성공하셨습니다!
+		Customer customer = customerRepository.search(
+				loginForm.getLogin(), loginForm.getPassword());
+		
+		if (customer != null) {
+			session.setAttribute("customer", customer);
+			return "login-out"; // 1.로그인에 성공하셨습니다!
+		} else {
+			// 로그인 실패
+			return "error-login"; //2. 아이디나 패스워드를 확인하세요
+		}
+		
+		
 	}
 }
 
