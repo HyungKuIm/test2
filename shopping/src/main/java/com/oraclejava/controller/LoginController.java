@@ -31,8 +31,9 @@ public class LoginController {
 	
 	//로그인 화면
 	@GetMapping("/login")
-	public String loginForm() {
-		return "login-in";
+	public String loginForm(Model model) {
+		model.addAttribute("contents", "login-in :: login");
+		return "index";
 	}
 	
 	//로그인 처리
@@ -41,7 +42,7 @@ public class LoginController {
 			BindingResult result, Model model, HttpSession session) {
 		System.out.println("login");
 		if (result.hasErrors()) {
-			return loginForm();  //2
+			return loginForm(model);  //2
 		}
 		
 		Customer customer = customerRepository.search(
@@ -49,10 +50,12 @@ public class LoginController {
 		
 		if (customer != null) {
 			session.setAttribute("customer", customer);
-			return "login-out"; // 1.로그인에 성공하셨습니다!
+			model.addAttribute("contents", "login-out :: login");
+			return "index"; // 1.로그인에 성공하셨습니다!
 		} else {
 			// 로그인 실패
-			return "error-login"; //2. 아이디나 패스워드를 확인하세요
+			model.addAttribute("contents", "error-login :: login");
+			return "index"; //2. 아이디나 패스워드를 확인하세요
 		}
 		
 		

@@ -6,6 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<div th:fragment="login">
 	<form th:action="@{/login}" method="post" th:object="${loginForm}">
 		<p>
 			로그인 id: 
@@ -24,5 +25,6 @@
 		</p>
 		<p><input type="submit" value="로그인"></p>
 	</form>
+	</div>
 </body>
 </html>
